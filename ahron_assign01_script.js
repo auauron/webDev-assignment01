@@ -1,12 +1,13 @@
 function $(id) {
-    return document.getElementById(id);
+return document.getElementById(id);
 }
 
 function fetchUsers() {
-    const count = $("userCount").value;
-    const userCount = parseInt(count, 10);
-    const container = $("userContainer");
+const count = $("userCount").value;
+const userCount = parseInt(count, 10);
+const container = $("userContainer");
 
+return new Promise((resolve, reject) => {
     if (!isNaN(userCount) && userCount >= 0 && userCount <= 1000) {
         fetch(`https://randomuser.me/api/?results=${userCount}`)
             .then(response => {
@@ -58,21 +59,26 @@ function fetchUsers() {
                     const nameDisplay = info.querySelector(".name-display");
 
                     dropdownItems.forEach(item => {
-                        item.addEventListener("change", (e) => {
+                        item.addEventListener("click", (e) => {
                             e.preventDefault();
                             dropdownButton.textContent = item.dataset.nameType;
                             nameDisplay.textContent = item.dataset.name;
                         });
                     });
                 });
+
+                resolve(data); 
             })
             .catch(error => {
                 console.error("Failed to fetch users:", error);
-                $("userContainer").innerHTML = `<div class="text-danger text-center mt-3">Failed to load user data. Please try again.</div>`;
+                container.innerHTML = `<div class="text-danger text-center mt-3">Failed to load user data. Please try again.</div>`;
+                reject(error); 
             });
     } else {
         const errorMessage = "Please enter a number between 0 and 1000.";
         console.error(errorMessage);
-        $("userContainer").innerHTML = `<div class="text-danger text-center mt-3">${errorMessage}</div>`;
+        container.innerHTML = `<div class="text-danger text-center mt-3">${errorMessage}</div>`;
+        reject(new Error(errorMessage));
     }
+});
 }
