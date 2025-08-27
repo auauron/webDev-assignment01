@@ -19,6 +19,6 @@
     </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/assignment1/ass1_script.js"></script>
+    <script src="/assignment1/ahronAssignment01_script.js"></script>
 </body>
 </html>
