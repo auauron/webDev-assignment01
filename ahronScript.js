@@ -4,6 +4,7 @@ return document.getElementById(id);
 
 let userRow = []
 let currentEditIndex = -1
+
 function fetchUsers() {
 const count = $("userCount").value;
 const userCount = parseInt(count, 10);
@@ -73,7 +74,7 @@ return new Promise((resolve, reject) => {
                     });
 
                     row.addEventListener("dblclick", () => {
-                        currentEditingIndex = index;
+                        editIndex = index;
                         showUserModal(user, index);
 
                     })
@@ -119,7 +120,7 @@ function showUserModal(user, index) {
                     <input type="text" class="form-control" id="editLastName" value="${user.name.last}">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label"><strong>Email:</strong></label>
+                    <label class="form-label"><strong>Email:</strong></label>   
                     <input type="email" class="form-control" id="editEmail" value="${user.email}">
                 </div>
                 <div class="mb-3">
@@ -176,9 +177,9 @@ function cancelEdit() {
 }
 
 function saveUserChanges() {
-    if (currentEditingIndex === -1) return;
+    if (editIndex === -1) return;
     
-    const user = userRow[currentEditingIndex];
+    const user = userRow[editIndex];
     
 
     user.name.first = $("editFirstName").value;
@@ -192,7 +193,7 @@ function saveUserChanges() {
     $("userPhone").textContent = user.cell;
     $("userGender").textContent = user.gender.charAt(0).toUpperCase() + user.gender.slice(1);
     
-    updateUserRowDisplay(currentEditingIndex);
+    updateUserRowDisplay(editIndex);
     
     cancelEdit();
 }
