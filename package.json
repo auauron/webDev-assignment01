@@ -1,0 +1,21 @@
+{
+  "name": "random-user-api-mimic",
+  "version": "1.0.0",
+  "description": "A local Express.js server that mimics the Random User API",
+  "main": "express.js",
+  "scripts": {
+    "start": "node express.js",
+    "dev": "node express.js"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "random-user",
+    "server"
+  ],
+  "author": "Ahron",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

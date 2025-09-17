@@ -13,7 +13,7 @@ const container = $("userContainer");
 
 return new Promise((resolve, reject) => {
     if (!isNaN(userCount) && userCount >= 0 && userCount <= 1000) {
-        fetch(`https://randomuser.me/api/?results=${userCount}`)
+        fetch(`http://localhost:3000/api?results=${userCount}`)
             .then(response => {
                 if (!response.ok) { 
                     throw new Error(`HTTP error! status: ${response.status}`);
